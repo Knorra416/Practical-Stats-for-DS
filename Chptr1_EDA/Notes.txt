@@ -1,0 +1,15 @@
+Two main types of data (with sub types):
+    Numeric
+        - Continuous: data which can take any value on an interval
+        - Discrete: data which can only take interval values
+    Categorical
+        - Binary: special categorical which can only be two possible values
+        - Ordinal: data which expresses ordering
+
+Rectangular data: two dimensional matrix with rows indicating records and columns indicating features.
+
+Trimmed mean: mean after trimming a set number of values on both tails.
+    - estimates the influence of outliers
+
+MAD (Median Absolute Deviation) * 1.4826 puts the value on the same scale as a Standard deviation.
+
