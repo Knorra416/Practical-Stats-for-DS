@@ -13,3 +13,4 @@ imbalanced-learn
 prince
 xgboost
 graphviz
+numpy

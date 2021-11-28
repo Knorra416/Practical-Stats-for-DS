@@ -13,3 +13,15 @@ Trimmed mean: mean after trimming a set number of values on both tails.
 
 MAD (Median Absolute Deviation) * 1.4826 puts the value on the same scale as a Standard deviation.
 
+Moments of a distribution:
+Location
+Variability
+Skewness
+Kurtosis
+
+"Probability of Winning 2 to 1" == 2/(2 + 1)
+
+Correlation coefficient may not be useful for variables which are NOT linearly related
+
+Hexagonal binning can show relationships between multiple variables
+
