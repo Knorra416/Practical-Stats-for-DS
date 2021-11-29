@@ -1,0 +1,5 @@
+- Coin flip event always follows a binomial distribution
+
+random sampling: each member of the population has the same chance of being selected for the sample.
+sample bias: sample is different in some meaningful and nonrandom way from the larger population.
+
