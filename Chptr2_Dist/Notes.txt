@@ -3,3 +3,8 @@
 random sampling: each member of the population has the same chance of being selected for the sample.
 sample bias: sample is different in some meaningful and nonrandom way from the larger population.
 
+stratified samples: split up population into strata then randomly sample from those.
+
+Holdout sets can help deal with vast search effect
+    - repeated modeling on a dataset until finding something interesting, could be by chance
+
