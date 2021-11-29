@@ -25,3 +25,5 @@ Correlation coefficient may not be useful for variables which are NOT linearly r
 
 Hexagonal binning can show relationships between multiple variables
 
+EDA; ALWAYS look at the data first!
+

@@ -64,3 +64,33 @@ ax = kc_tax0.plot.hexbin(x="SqFtTotLiving", y="TaxAssessedValue", gridsize=30, s
 ax.set_xlabel("Finished Square Feet")
 ax.set_ylabel("Tax-Assessed Value")
 
+lc_loans = pd.read_csv("/Users/alexknorr/PycharmProjects/Practical-Stats-for-DS/data/lc_loans.csv")
+crosstab = lc_loans.pivot_table(index='grade', columns='status', aggfunc=lambda x: len(x), margins=True)
+df = crosstab.loc['A':'G', :].copy()
+df.loc[:, "Charged Off": 'Late'] = df.loc[:, "Charged Off": "Late"].div(df["All"], axis=0)
+df["All"] = df["All"]/sum(df["All"])
+perc_crosstab = df
+print(perc_crosstab)
+
+airline_stats = pd.read_csv("/Users/alexknorr/PycharmProjects/Practical-Stats-for-DS/data/airline_stats.csv")
+ax = airline_stats.boxplot(by='airline', column='pct_carrier_delay')
+
+
+zip_codes = [98188, 98105, 98108, 98126]
+kc_tax_zip = kc_tax0.loc[kc_tax0.ZipCode.isin(zip_codes),:]
+
+
+def hexbin(x, y, color, **kwargs):
+    cmap = sns.light_palette(color, as_cmap=True)
+    plt.hexbin(x, y, gridsize=25, cmap=cmap, **kwargs)
+
+
+g = sns.FacetGrid(kc_tax_zip, col='ZipCode', col_wrap=2)
+g.map(hexbin, 'SqFtTotLiving', 'TaxAssessedValue', extent=[0, 3500, 0, 700000])
+g.set_axis_labels('Finished Square Feet', 'Tax-Assessed Value')
+g.set_titles("Zip Code {col_name: .0f}")
+
+
+
+
+
