@@ -8,3 +8,10 @@ stratified samples: split up population into strata then randomly sample from th
 Holdout sets can help deal with vast search effect
     - repeated modeling on a dataset until finding something interesting, could be by chance
 
+Bootstrapping does not rely on CLT or assumptions about distributions
+
+bootstrap - draw additional samples, with replacement, from the sample itself
+            and recalculate the statistic or model for each resample.
+
+baggging == bootstrap aggregating
+
