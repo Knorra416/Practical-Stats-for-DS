@@ -15,3 +15,21 @@ bootstrap - draw additional samples, with replacement, from the sample itself
 
 baggging == bootstrap aggregating
 
+Normal distribution:
+    - raw data typicall isnt normal, but errors are as are averages and totals in large samples
+
+sample statistics (sample mean for example) usually follow a t-distribution
+
+chi-squared statistic - measures the extent to which results depart from the null expectation of independence
+    - goodness of fit; how well a set of values "fits" a specific distribution
+
+f-distribution - differences in group means (ANOVA uses f-distrbution)
+
+poisson distribution - events per unit of time or space when many such units exist
+
+exponential distributions - models time between events occurring
+
+weibull distribution - models time between events BUT does not assume the event rate is constant
+
+
+
