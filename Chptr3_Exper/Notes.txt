@@ -1,0 +1,15 @@
+A/B tests - apply a treatment to a group of subjects and ideally those subjects were randomly selected for treatment
+
+control group ensures that "all things are equal" except for the desired treatment
+
+one way hypothesis test: only care about one tail result (B > A, but dont care about A > B)
+two way hypothesis test: B is different from A in either direction
+
+two way can be a more conservative estimate to help avoid argument and is usually the default
+
+resample: repeatedly sample values from observed data, with a general goal of assessing random variability in a statistic.
+          Also used to assess and improve accuracy of some machine learning models (bagging).
+
+two main types of resample:
+    - bootstrap: bootstrap used to assess reliability of an estimate (see previous notes)
+    - permutation: combining two or more samples together and randomly reallocating the observations to resamples.
