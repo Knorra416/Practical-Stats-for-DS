@@ -13,3 +13,19 @@ resample: repeatedly sample values from observed data, with a general goal of as
 two main types of resample:
     - bootstrap: bootstrap used to assess reliability of an estimate (see previous notes)
     - permutation: combining two or more samples together and randomly reallocating the observations to resamples.
+
+permutation test steps:
+    - combine results from the different groups of data into a single set
+    - shuffle the combined data and randomly draw two new samples (without replacement)
+    - calc test statistic
+    - repeat N times until you've created a permutation distribution
+    - compare the observed test stats to this distribution, if its outside the distribution then we've proved some effect
+
+two other permutation variants:
+    - exhaustive permutation test: ID all the ways to shuffle and combine data and create those samples
+    - bootstrap permutation test: make draws with replacement, mimics random assignment to treatment/ control
+                                  but also random assignment of selection from population
+
+dont need normal distribution assumptions for this test
+
+
