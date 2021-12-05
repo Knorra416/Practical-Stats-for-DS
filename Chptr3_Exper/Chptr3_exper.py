@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import random
+from scipy import stats
 
 session_times = pd.read_csv("/Users/alexknorr/PycharmProjects/Practical-Stats-for-DS/data/web_page_data.csv")
 session_times.Time = 100 * session_times.Time
@@ -46,6 +47,17 @@ ax.axvline(x=obs_pct_diff, color='black', lw=2)
 ax.text(0.06, 200, "Observed\ndifference", bbox={"facecolor": "white"})
 ax.set_xlabel("Conversion rate (percent)")
 ax.set_ylabel("Frequency")
+
+np.mean([diff > obs_pct_diff for diff in perm_diffs])
+
+survivors = np.array([[200, 23739 - 200], [182, 22588 - 182]])
+chi2, p_value, df, _ = stats.chi2_contingency(survivors)
+print(f"p-value for single sided test: {p_value/ 2:.4f}")
+
+res = stats.ttest_ind(session_times[session_times.Page == 'Page A'].Time,
+                      session_times[session_times.Page == 'Page B'].Time,
+                      equal_var=False)
+print(f"p-value for single sided test: {res.pvalue / 2:.4f}")
 
 
 

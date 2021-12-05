@@ -26,6 +26,18 @@ two other permutation variants:
     - bootstrap permutation test: make draws with replacement, mimics random assignment to treatment/ control
                                   but also random assignment of selection from population
 
-dont need normal distribution assumptions for this test
+don't need normal distribution assumptions for this test
 
+p-value the probability of seeing a value as extreme or more extreme given the null hypothesis is true.
+    - low p-value, reject the null in favor of alternative
+
+Type 1 error:
+    - mistakenly conclude an effect is real, when it is really just due to chance
+Type 2 error:
+    - mistakenly conclude an effect is not real, when it actually is real
+
+hypothesis tests are typically structured to reduce type 1 errors. Type 2 errors could be handled by larger sample sizes
+
+alpha inflation:
+    - multiple testing phenomenon, in which alpha, the prob of making a Type 1 error, increases as you conduct more tests.
 
