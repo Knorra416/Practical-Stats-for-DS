@@ -41,3 +41,16 @@ hypothesis tests are typically structured to reduce type 1 errors. Type 2 errors
 alpha inflation:
     - multiple testing phenomenon, in which alpha, the prob of making a Type 1 error, increases as you conduct more tests.
 
+Degrees of freedom: the number of values that are free to vary
+    - once you know N - 1 values you can calculate the last (so it is not free to vary).
+    - reduces bias when using an estimate of a population
+
+ANOVA: test for a statistically significant difference among groups instead of only two groups
+    - test looks at if all groups have the same underlying values and the differences are due to random chance
+
+F test: statistical significance of group means aka ANOVA!
+
+Chi square Test:
+    - Used for count data and tests how well it fits some expected distribution
+
+

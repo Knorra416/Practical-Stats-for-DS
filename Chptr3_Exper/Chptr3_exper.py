@@ -59,5 +59,19 @@ res = stats.ttest_ind(session_times[session_times.Page == 'Page A'].Time,
                       equal_var=False)
 print(f"p-value for single sided test: {res.pvalue / 2:.4f}")
 
+four_sessions = pd.read_csv("/Users/alexknorr/PycharmProjects/Practical-Stats-for-DS/data/four_sessions.csv")
+observed_variance = four_sessions.groupby("Page").mean().var()[0]
+print(f"Observed Means: {four_sessions.groupby('Page').mean().values.ravel()}")
+print(f"Variance: {observed_variance}")
+
+
+def perm_test(df):
+    df = df.copy()
+    df["Time"] = np.random.permutation(df["Time"].values)
+    return df.groupby("Page").mean().var()[0]
+
+
+perm_variance = [perm_test(four_sessions) for _ in range(3000)]
+print(f"PR(Prob): {np.mean([var > observed_variance for var in perm_variance])}")
 
 
