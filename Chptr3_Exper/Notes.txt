@@ -53,4 +53,10 @@ F test: statistical significance of group means aka ANOVA!
 Chi square Test:
     - Used for count data and tests how well it fits some expected distribution
 
+Fischer's Exact Test: calculates all possible resampling permutations for a chi2 test so you know the correct pvalue,
+                        not an approximation
+
+Multi-arm Bandit: Faster insight than traditional A/B testing.
+    - testing multiple treatments at once and reach conclusions faster
+    -
 

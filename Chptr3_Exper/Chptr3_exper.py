@@ -74,4 +74,42 @@ def perm_test(df):
 perm_variance = [perm_test(four_sessions) for _ in range(3000)]
 print(f"PR(Prob): {np.mean([var > observed_variance for var in perm_variance])}")
 
+click_rate = pd.read_csv("/Users/alexknorr/PycharmProjects/Practical-Stats-for-DS/data/click_rates.csv")
+clicks = click_rate.pivot(index='Click', columns='Headline', values='Rate')
+box = [1] * 34
+box.extend([0] * 2966)
+random.shuffle(box)
+
+
+def chi2(observed, expected):
+    pearson_residuals = []
+    for row, expect in zip(observed, expected):
+        pearson_residuals.append([(observe - expect) ** 2 / expect for observe in row])
+
+    return np.sum(pearson_residuals)
+
+
+expected_clicks = 34/3
+expected_noclicks = 1000 - expected_clicks
+expected = [34/3, 1000 - 34 / 3]
+chi2observed = chi2(clicks.values, expected)
+
+
+def perm_fun(box):
+    sample_clicks = [sum(random.sample(box, 1000)),
+                     sum(random.sample(box, 1000)),
+                     sum(random.sample(box, 1000))]
+    sample_noclicks = [1000 - n for n in sample_clicks]
+    return chi2([sample_clicks, sample_noclicks], expected)
+
+
+perm_chi2 = [perm_fun(box) for _ in range(2000)]
+resampled_p_value = sum(perm_chi2 > chi2observed) / len(perm_chi2)
+print(f"Observed chi2: {chi2observed:.4f}")
+print(f"Resampled p-value: {resampled_p_value: .4f}")
+
+chisq, pvalue, df, expected = stats.chi2_contingency(clicks)
+print(f"Observed chi2: {chisq:.4f}")
+print(f"Resampled p-value: {pvalue: .4f}")
+
 
