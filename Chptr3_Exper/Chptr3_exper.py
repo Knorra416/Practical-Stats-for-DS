@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 from scipy import stats
+import statsmodels.api as sm
 
 session_times = pd.read_csv("/Users/alexknorr/PycharmProjects/Practical-Stats-for-DS/data/web_page_data.csv")
 session_times.Time = 100 * session_times.Time
@@ -112,4 +113,7 @@ chisq, pvalue, df, expected = stats.chi2_contingency(clicks)
 print(f"Observed chi2: {chisq:.4f}")
 print(f"Resampled p-value: {pvalue: .4f}")
 
-
+effect_size = sm.stats.proportion_effectsize(0.0121, 0.011)
+analysis = sm.stats.TTestIndPower()
+results = analysis.solve_power(effect_size=effect_size, alpha=0.05, power=0.8, alternative='larger')
+print(f"Sample Size: {results}")

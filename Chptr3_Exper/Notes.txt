@@ -58,5 +58,9 @@ Fischer's Exact Test: calculates all possible resampling permutations for a chi2
 
 Multi-arm Bandit: Faster insight than traditional A/B testing.
     - testing multiple treatments at once and reach conclusions faster
-    -
+
+sample size and test power: effect difference we want to measure plays a big part in these estimates.
+
+
+
 
