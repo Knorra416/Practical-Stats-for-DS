@@ -1,0 +1,5 @@
+Traditional use of OLS was to explain relationships between variables (Economists) not to make predictions.
+Data Science generally wants to use models to predict new outcomes for unseen data.
+
+DOES NOT prove causation, is just a component in helping the causation case.
+
