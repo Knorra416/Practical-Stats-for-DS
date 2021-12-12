@@ -3,3 +3,31 @@ Data Science generally wants to use models to predict new outcomes for unseen da
 
 DOES NOT prove causation, is just a component in helping the causation case.
 
+For linear regression, RMSE and RSE and not very different especially for large sample sizes.
+
+R-squared: measures the proportion of the variation in the data accounted for in the model.
+
+Choosing variables for a model:
+    AIC = 2P + nlog(RSS/n)  P == number of variables, n == number of records
+        - goal to minimize AIC and model variables are penalized.
+    BIC: similar to AIC with stronger penalty for adding variables
+    Mallows CP: variant of AIC developed by Colin Mallows
+
+Stepwise regression:
+    start with a full regression and drop variables that dont contribute meaningfully.
+        - called backwards elimination
+        - forward selection: start with constant model and add variables
+    Use AIC to make variable drop decision
+
+no stepwise regression in scikitlearn, but the authors created a package called DMBA which has it.
+ridge and lasso regressions and penalized regressions: reducing coefficients by a penalty when they don't contribute to
+    explanatory power of model.
+
+weighted regressions:
+    - used to analyze complex surveys
+    use cases for DS:
+        - inverse-variance: weighting observations differently when they have been measured with different precision.
+        - Analysis of data where rows represent multiple cases; the weight variable encodes how many original observations
+            each row represents.
+
+
