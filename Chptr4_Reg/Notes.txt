@@ -30,4 +30,19 @@ weighted regressions:
         - Analysis of data where rows represent multiple cases; the weight variable encodes how many original observations
             each row represents.
 
+Confidence interval == uncertainty around regression coefficients
+Prediction interval == uncertainty around individual predictions
 
+Drop a category for all factor variables. With an intercept, one of the categories is already known and including
+    all categories will result in the "dummy variable trap"
+        - Multicollinearity errors
+
+Different encoding techniques besides dummy variables:
+    - deviation coding: compares each level against the overall mean
+    - polynomial coding: appropriate for ordered factors
+
+Approach to reducing category sizes?
+    - Use an existing model
+    - group factor variable by the residuals from an initial model (using qcut)
+
+Ordered factor variables can be treated as numerics to preserve the order and used as is.

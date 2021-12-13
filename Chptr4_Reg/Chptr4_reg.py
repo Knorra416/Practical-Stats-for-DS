@@ -77,7 +77,36 @@ print(f"Coefficients:")
 for name, coef in zip(best_variables, best_model.coef_):
     print(f"{name}: {coef}")
 
+house["Year"] = [int(date.split("-")[0]) for date in house.DocumentDate]
+house["weight"] = house.Year - 2005
+predictors = ['SqFtTotLiving', 'SqFtLot', 'Bathrooms', 'Bedrooms', 'BldgGrade']
+outcome = "AdjSalePrice"
 
+house_wt = LinearRegression()
+house_wt.fit(house[predictors], house[outcome], sample_weight=house.weight)
+print(house_wt.coef_)
+print(house_wt.intercept_)
 
+print(pd.get_dummies(house["PropertyType"]).head())
+print(pd.get_dummies(house["PropertyType"], drop_first=True).head())
 
+print(pd.DataFrame(house["ZipCode"].value_counts()).transpose())
+
+zip_groups = pd.DataFrame([
+    *pd.DataFrame({
+        "ZipCode": house["ZipCode"],
+        "residual": house[outcome] - house_lm.predict(house[predictors])
+    })
+    .groupby(["ZipCode"])
+    .apply(lambda x: {
+        "ZipCode": x.iloc[0, 0],
+        "count": len(x),
+        "median_residual": x.residual.median()
+    })
+]).sort_values("median_residual")
+zip_groups["cum_count"] = np.cumsum(zip_groups["count"])
+zip_groups["ZipGroup"] = pd.qcut(zip_groups["cum_count"], 5, labels=False, retbins=False)
+to_join = zip_groups[["ZipCode", "ZipGroup"]].set_index("ZipCode")
+house = house.join(to_join, on="ZipCode")
+house["ZipGroup"] = house["ZipGroup"].astype("category")
 
