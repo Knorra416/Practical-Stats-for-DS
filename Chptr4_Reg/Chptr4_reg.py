@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import random
 from scipy import stats
 import statsmodels.api as sm
+import statsmodels.formula.api as smf
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score, mean_squared_error
 from dmba import stepwise_selection
@@ -109,4 +110,10 @@ zip_groups["ZipGroup"] = pd.qcut(zip_groups["cum_count"], 5, labels=False, retbi
 to_join = zip_groups[["ZipCode", "ZipGroup"]].set_index("ZipCode")
 house = house.join(to_join, on="ZipCode")
 house["ZipGroup"] = house["ZipGroup"].astype("category")
+
+model = smf.ols(formula="AdjSalePrice ~ SqFtTotLiving*ZipGroup + SqFtLot + Bathrooms "
+                        "+ Bedrooms + BldgGrade + PropertyType", data=house)
+results = model.fit()
+print(results.summary())
+
 

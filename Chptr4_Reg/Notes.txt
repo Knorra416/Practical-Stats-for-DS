@@ -46,3 +46,8 @@ Approach to reducing category sizes?
     - group factor variable by the residuals from an initial model (using qcut)
 
 Ordered factor variables can be treated as numerics to preserve the order and used as is.
+
+Multicollinearity is not a concern in non-linear regression methods like trees, clustering, and nearest-neighbors.
+
+
+
