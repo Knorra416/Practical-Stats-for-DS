@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import matplotlib
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
@@ -9,6 +10,7 @@ from sklearn.metrics import r2_score, mean_squared_error
 from dmba import stepwise_selection
 from dmba import AIC_score
 
+matplotlib.use('TkAgg')
 lung = pd.read_csv("/Users/alexknorr/PycharmProjects/Practical-Stats-for-DS/data/LungDisease.csv")
 predictors = ["Exposure"]
 outcome = 'PEFR'
@@ -137,4 +139,6 @@ ax.scatter(influence.hat_matrix_diag, influence.resid_studentized_internal,
 ax.set_xlabel("Hat Values")
 ax.set_ylabel("Studentized Residuals")
 plt.show()
+
+
 
