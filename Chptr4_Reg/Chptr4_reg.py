@@ -1,10 +1,9 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import random
-from scipy import stats
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
+from statsmodels.stats.outliers_influence import OLSInfluence
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score, mean_squared_error
 from dmba import stepwise_selection
@@ -116,4 +115,26 @@ model = smf.ols(formula="AdjSalePrice ~ SqFtTotLiving*ZipGroup + SqFtLot + Bathr
 results = model.fit()
 print(results.summary())
 
+house_98105 = house.loc[house["ZipCode"] == 98105, ]
+predictors = ['SqFtTotLiving', 'SqFtLot', 'Bathrooms', 'Bedrooms', 'BldgGrade']
+outcome = "AdjSalePrice"
+
+house_outlier = sm.OLS(house_98105[outcome], house_98105[predictors].assign(const=1))
+result_98105 = house_outlier.fit()
+influence = OLSInfluence(result_98105)
+sresiduals = influence.resid_studentized_internal
+sresiduals.idxmin(), sresiduals.min()
+outlier = house_98105.loc[sresiduals.idxmin(), :]
+print(f"Adjsaleprice: {outlier[outcome]}")
+print(outlier[predictors])
+
+influence = OLSInfluence(result_98105)
+fig, ax = plt.subplots(figsize=(5, 5))
+ax.axhline(-2.5, linestyle="--", color="C1")
+ax.axhline(2.5, linestyle="--", color="C1")
+ax.scatter(influence.hat_matrix_diag, influence.resid_studentized_internal,
+           s=1000 * np.sqrt(influence.cooks_distance[0]), alpha=0.5)
+ax.set_xlabel("Hat Values")
+ax.set_ylabel("Studentized Residuals")
+plt.show()
 

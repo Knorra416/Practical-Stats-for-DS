@@ -49,5 +49,9 @@ Ordered factor variables can be treated as numerics to preserve the order and us
 
 Multicollinearity is not a concern in non-linear regression methods like trees, clustering, and nearest-neighbors.
 
+influential values: data points which have a high leverage(influence) on the regression.
+    - hat-values: values ABOVE 2(P + 1)/n indicates a high leverage data value
+
+Cooks distance: influence defined as combination of leverage and residual size. Usually, values exceeding 4(n - P - 1).
 
 
