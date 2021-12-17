@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import seaborn as sns
 import matplotlib
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
@@ -9,8 +10,9 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score, mean_squared_error
 from dmba import stepwise_selection
 from dmba import AIC_score
+from pygam import LinearGAM, s, l
 
-matplotlib.use('TkAgg')
+matplotlib.use('MacOSX')
 lung = pd.read_csv("/Users/alexknorr/PycharmProjects/Practical-Stats-for-DS/data/LungDisease.csv")
 predictors = ["Exposure"]
 outcome = 'PEFR'
@@ -140,5 +142,27 @@ ax.set_xlabel("Hat Values")
 ax.set_ylabel("Studentized Residuals")
 plt.show()
 
+fig, ax = plt.subplots(figsize=(5, 5))
+sns.regplot(result_98105.fittedvalues, np.abs(result_98105.resid), scatter_kws={"alpha": 0.25}, line_kws={"color": "C1"},
+            lowess=True, ax=ax)
 
+sm.graphics.plot_ccpr(result_98105, 'SqFtTotLiving')
 
+model_poly = smf.ols(formula="AdjSalePrice ~ SqFtTotLiving + I(SqFtTotLiving**2) + SqFtLot + Bathrooms + Bedrooms +"
+                             "BldgGrade", data=house_98105)
+results_poly = model_poly.fit()
+print(results_poly.summary())
+
+formula = 'AdjSalePrice ~ bs(SqFtTotLiving, df=6, degree=3) + SqFtLot + Bathrooms + Bedrooms + BldgGrade'
+model_spline = smf.ols(formula=formula, data=house_98105)
+result_spline = model_spline.fit()
+print(result_spline.summary())
+
+predictors = ["SqFtTotLiving", "SqFtLot", "Bathrooms", "Bedrooms", "BldgGrade"]
+outcome = "AdjSalePrice"
+X = house_98105[predictors].values
+Y = house_98105[outcome]
+
+gam = LinearGAM(s(0, n_splines=12) + l(1) + l(2) + l(3) + l(4))
+gam.gridsearch(X, Y)
+print(gam.summary())

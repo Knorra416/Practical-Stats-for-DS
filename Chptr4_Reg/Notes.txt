@@ -54,4 +54,17 @@ influential values: data points which have a high leverage(influence) on the reg
 
 Cooks distance: influence defined as combination of leverage and residual size. Usually, values exceeding 4(n - P - 1).
 
+Confidence intervals for predicted values are based on the assumptions about the residuals (normally distributed errors)
+
+For a data scientist, heteroskedasticity may suggest an incomplete model.
+
+Partial residuals help identify the contribution a specific feature has in predicting the outcome and can help identify
+    non-linear relationships.
+
+Splines are an alternative, and usually superior alternative to model non-linear relationships.
+    - polynomial smoothing between two fixed points.
+    - Note ALWAYS better model (best to visualize)
+
+Generalized Additive Models - flexible modeling technique to automatically fit a spline regression without specifying terms.
+
 
