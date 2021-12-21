@@ -1,0 +1,24 @@
+Logistic regression is a popular method because of its fast computation speed
+    and the output lends itself to rapid scoring of the data.
+
+Logit: The function that maps class membership probability to a range from plus minus infinity (instead of 0 to 1).
+
+Odds: Ratio of "success" to "not success"
+
+Log odds: The response in the transformed model (now linear), which gets mapped back to the probability.
+
+Binary outcomes should use a logistic regression INSTEAD of linear!
+
+GLMs are characterized by two main components:
+    1) probability distribution or family (binomial for logistic)
+    2) link function: a transformation function that maps the response to the predictors (logit for logistic)
+
+Logistic regressions differ from linear models in two main ways:
+    1) the way the model is fit (least squares is not applicable)
+    2) the nature and analysis of the residuals from the model
+
+Logistic models are fit using maximum likelihood estimation (MLE)
+    - the model most likely to produce the data we see
+
+
+
