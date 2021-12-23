@@ -1,0 +1,23 @@
+Boosting: a general technique for creating ensemble models.
+    Fitting a series of models where each successive model seeks to minimize the error of the previous model.
+
+General flow for boosting algos:
+1) Initialize M, the maximum number of models to be fit and set the iteration counter m=1.
+    Initialize the observation weights wi = 1/N for i = 1,2,3...N. Initialize the ensemble model F0 = 0
+2) Using the observation weights, train a model that min. the weighted error
+    defined by summing the weights for the missclassified obs.
+3) Add the model to the ensemble (see page 271 for formula)
+4) Update the weights so that the weights are increased for the observations that were missclassified.
+    The size of the increase depends on alpha, with larger values leading to bigger weights.
+5) Increment the model counter m=m+1 if m <= M go to step 2.
+
+Changing weights for the missclassified obs means the models trains more heavily on observations where it performed poorly.
+
+Gradient boosting: fits models to a pseudo-residual, which has the effect of training more heavily on the larger residuals.
+
+Two main hyperparameters for XGBoost:
+    - subsample, controls the fraction of observations that should be sampled at each iteration.
+        * makes boosting act like random forest except that sampling is done without replacement.
+    - eta, shrinkage factor applied to alpha in the boosting algorithm.
+        * helps prevent overfitting by reducing the change in weights
+
