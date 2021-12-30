@@ -21,3 +21,16 @@ Two main hyperparameters for XGBoost:
     - eta, shrinkage factor applied to alpha in the boosting algorithm.
         * helps prevent overfitting by reducing the change in weights
 
+XGBoost will not perform well with untuned parameters.
+    - variables to help with overfitting:
+        * eta (learning rate)
+        * subsample
+    - regularization can also be used to help with overfitting
+        * penalizes the cost function for being complex
+    - two parameters vailable to XGB for regularization
+        * alpha L1 regularization
+        * lambda L2 regularization
+            - Increasing these parameters will penalize complex models and reduce the size of the trees that are fit.
+
+
+
